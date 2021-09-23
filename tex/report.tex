@@ -7,7 +7,7 @@
 \author[1]{Andy Vu}
 \author[1]{Oliver Tran}
 \author[1]{Sanjeev Khemani}
-\author[2]{Noah Gardner}
+\author[1]{Noah Gardner}
 \affil[1]{College of Computing and Software Engineering, Kennesaw State University}
 \date{\today}
 \renewcommand\Authands{ and }
@@ -34,10 +34,10 @@ generated, the destination of the flow is also generated randomly. After the
 traffic flow is generated and the destination is chosen, the traffic flow
 chooses it's path automatically as the shortest distance from the starting cell
 to the current cell. Finally, the original paper uses one traffic environment
-with simple two-way roads that are placed on the grid laterally and vertically. 
+with simple two-way roads that are placed on the grid laterally and vertically.
 
 One idea we would like to explore is to add different priorities for cells as
-destinations. If a cell is a high priority destination, then it is more likely 
+destinations. If a cell is a high priority destination, then it is more likely
 to be chosen as a destination for a traffic flow when it is generated. Another
 improvement could also allow for modelling of different types of roads. For
 example, rather than the flow taking the shortest path from the source to the
@@ -49,93 +49,109 @@ streets, so that may be valuable for a traffic flow model as well.
 
 \section{Literature Review}
 \begin{itemize}
-    \item Simulation of urban macro-traffic flow based on cellular automata \cite{pang_simulation_2019}
-    \begin{description}
-        \item This paper uses a cellular automata model to simulate traffic flow on a
-        two-dimensional grid. Traffic flows are randomly generated that have a
-        certain amount of traffic (low or heavy) and also have a random
-        destination. There exists a grid with cells filled in which are meant to
-        model the roads for the traffic flow to move on. On each timestep, the
-        traffic flows move towards their destination using a minimum distance
-        method. The cells can hold a certain amount of traffic capacity. When
-        the traffic capacity for a cell is reached, the cell will not allow new
-        traffic flows to enter the cell. The cell also have a traffic volume,
-        which helps the programmer to see at a glance which cells have high and
-        low volumes of traffic.
-    \end{description}
-    \item A cellular automaton model for freeway traffic \cite{nagel_cellular_1992}
-    \begin{description}
-        \item Nagel and Schreckenberg have gone away from the typical fluid dynamical
-        approaches to traffic flow studies during this time to the use of a more
-        revoluationary technique. The need for this was to introduce a factor of
-        laminar start-stop waves with increasing vehicle density with an
-        emphasis on human behavior a traffic environment. In their
-        model, it is represented as a single dimensional array where each cell
-        may be a vehicle with functions to accelearte, slow down, as well as
-        randomized velocities. These functions are to represent the randomness
-        in human behavior and varying conditions that are expected during
-        traffic. The authors concluded that a computational way to simulate
-        traffic flow, was more advantagous to a fluid dynamical approach that
-        incorporated real world behavior ofa driver but also retained the key
-        aspects of fluid dynamic studies.
-    \end{description}
+    \item Simulation of urban macro-traffic flow based on cellular automata
+          \cite{pang_simulation_2019}
+          \begin{description}
+              \item This paper uses a cellular automata model to simulate
+                    traffic flow on a two-dimensional grid. Traffic flows are
+                    randomly generated that have a certain amount of traffic
+                    (low or heavy) and also have a random destination. There
+                    exists a grid with cells filled in which are meant to model
+                    the roads for the traffic flow to move on. On each timestep,
+                    the traffic flows move towards their destination using a
+                    minimum distance method. The cells can hold a certain amount
+                    of traffic capacity. When the traffic capacity for a cell is
+                    reached, the cell will not allow new traffic flows to enter
+                    the cell. The cell also have a traffic volume, which helps
+                    the programmer to see at a glance which cells have high and
+                    low volumes of traffic.
+          \end{description}
+    \item A cellular automaton model for freeway traffic
+          \cite{nagel_cellular_1992}
+          \begin{description}
+              \item Nagel and Schreckenberg have gone away from the typical
+                    fluid dynamical approaches to traffic flow studies during
+                    this time to the use of a more revoluationary technique. The
+                    need for this was to introduce a factor of laminar
+                    start-stop waves with increasing vehicle density with an
+                    emphasis on human behavior a traffic environment. In their
+                    model, it is represented as a single dimensional array where
+                    each cell may be a vehicle with functions to accelearte,
+                    slow down, as well as randomized velocities. These functions
+                    are to represent the randomness in human behavior and
+                    varying conditions that are expected during traffic. The
+                    authors concluded that a computational way to simulate
+                    traffic flow, was more advantagous to a fluid dynamical
+                    approach that incorporated real world behavior ofa driver
+                    but also retained the key aspects of fluid dynamic studies.
+          \end{description}
     \item Self-organization and phase transition in traffic-flow model of a
-    two-lane roadway \cite{nagatani_self-organization_1993}
-    \begin{description}
-        \item Tasdf
-    \end{description}
-    \item Multi-value cellular automata model for mixed bicycle flow \cite{jia_multi-value_2007}
-    \begin{description}
-        \item Tasdf
-    \end{description}
-    \item Cellular automaton model for bidirectional traffic \cite{simon_cellular_1998-1}
-    \begin{description}
-        \item Simon and Gutowitz have built upon the paper referenced above by Nagel
-        and Schreckenberg. Here they are implementing a bidrectional traffic using a two
-        lane road with traffic moving in opposite direction in comparison to Nagel and Schreckenberg's one lane cellular automaton.
-        They have incorporated inteteractions to simulate passing, as well as a
-        distribution of varying vehicle speeds. Once again, Simon and gutowitz,
-        like their reference model, had an emphasis on approximating the
-        behavior of real traffic and human behavior. They wanted to address the
-        issue of a one lane cellular atomaton where all vehicles have a maximum
-        velocity  and thus the model unrealistically follows a lead slow car,
-        hence the need and emphasis on passing. The bidirectional model varried
-        in types where there was varrying rules regarding passing. The
-        researchers have found that passing greatly increases fluidity in
-        traffic not seen in single dimensional cellular automaton and greatly
-        resembles real world traffic dynamics and flow.
-    \end{description}
+          two-lane roadway \cite{nagatani_self-organization_1993}
+          \begin{description}
+              \item Tasdf
+          \end{description}
+    \item Multi-value cellular automata model for mixed bicycle flow
+          \cite{jia_multi-value_2007}
+          \begin{description}
+              \item Tasdf
+          \end{description}
+    \item Cellular automaton model for bidirectional traffic
+          \cite{simon_cellular_1998-1}
+          \begin{description}
+              \item Simon and Gutowitz have built upon the paper referenced
+                    above by Nagel and Schreckenberg. Here they are implementing
+                    a bidrectional traffic using a two lane road with traffic
+                    moving in opposite direction in comparison to Nagel and
+                    Schreckenberg's one lane cellular automaton. They have
+                    incorporated inteteractions to simulate passing, as well as
+                    a distribution of varying vehicle speeds. Once again, Simon
+                    and gutowitz, like their reference model, had an emphasis on
+                    approximating the behavior of real traffic and human
+                    behavior. They wanted to address the issue of a one lane
+                    cellular atomaton where all vehicles have a maximum velocity
+                    and thus the model unrealistically follows a lead slow car,
+                    hence the need and emphasis on passing. The bidirectional
+                    model varried in types where there was varrying rules
+                    regarding passing. The researchers have found that passing
+                    greatly increases fluidity in traffic not seen in single
+                    dimensional cellular automaton and greatly resembles real
+                    world traffic dynamics and flow.
+          \end{description}
 \end{itemize}
 
 \section{Methods}
 For this project, we plan to use Python to implement our cellular automata
-traffic flow model. We may also include a GUI to visualize the traffic flow
-on each time step. This section will be expanded as the project progresses.
+traffic flow model. We may also include a GUI to visualize the traffic flow on
+each time step. This section will be expanded as the project progresses.
 
 \section{Milestones}
 
-\begin{tabular}{l|l|}
-\textbf{Date} & \textbf{Milestone} \\
-\hline
-$9/24/2021$    & \textbf{Project Deliverable 1} \\
+\begin{tabular}{|l|l|}
     \hline
-    & Implement the original cellular automata and algorithm \\
+    \textbf{Date} & \textbf{Milestone}                                             \\
     \hline
-    & Add weights to the cells to model different types of roads \\
+    $9/24/2021$   & \textbf{Project Deliverable 1}                                 \\
     \hline
-    & Add destination priorities to the cells to model different types of
-    traffic \\
+                  & Implement the original cellular automata and algorithm         \\
     \hline
-    & Add diagonal paths and one-way streets to model different traffic
-    environments \\
+                  & Add weights to the cells to model different types of roads     \\
     \hline
- $10/29/2021$   & \textbf{Project Deliverable 2} \\
+                  & Add destination priorities to model different types of traffic \\
     \hline
-    & Create different environments to run our proposed algorithm \\
+                  & Model different traffic environments (one-way, etc.)
+    \\
     \hline
-    & Collect experimental results and present findings \\
+    $10/29/2021$  & \textbf{Project Deliverable 2}
+    \\
     \hline
-    &\textit{Optional} Add GUI to visualize the traffic flow \\
+                  & Create different environments to run our proposed algorithm
+    \\
+    \hline
+                  & Collect experimental results and present findings
+    \\
+    \hline
+                  & \textit{Optional} Add GUI to visualize the traffic flow
+    \\
     \hline
 \end{tabular}
 
@@ -149,10 +165,10 @@ while also sharing the load of programming.
 
 \begin{itemize}
     \item \textbf{Members' Roles}
-    \item[Andy Vu:] Programming, Writing
-    \item[Olivier Tran:] Programming, Writing, Submitting Documents
-    \item[Sanjeev Khemani:] - Programming, Writing
-    \item[Noah Gardner:] Programming, Writing, Source Control
+    \item[-] \textbf{Andy Vu:} Programming, Writing
+    \item[-] \textbf{Olivier Tran:} Programming, Writing, Submitting Documents
+    \item[-] \textbf{Sanjeev Khemani:} Programming, Writing
+    \item[-] \textbf{Noah Gardner:} Programming, Writing, Source Control
 \end{itemize}
 
 \bibliography{report}
