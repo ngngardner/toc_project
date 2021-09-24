@@ -174,23 +174,45 @@ streets, so that may be valuable for a traffic flow model as well.
     \item Self-organization and phase transition in traffic-flow model of a
           two-lane roadway \cite{nagatani_self-organization_1993}
           \begin{description}
-              \item Nagatani implements a two lane model as an extension of a one dimensional cellular automaton to monitor lane changing. Their model is essentially two 1-dimensional lattaces
-              to represent a two lane roadway. Rules using arrows within the lattace were deteremined to allow cars to change lanes at certain times such as when a car infront was blocking
-              the path to progress forward from either the right to left direcetion or vice versa. These rules were dependent on the time step. Overall the results showed that as the cars
-              general velocity increased, there was a usage of lane shifting without cars obstructing progress. As density increases, the maximal velocity decreases. There was a "sweet-spot"
-              indicating the optimal amount of lane changing within a set of density of traffic where lane changing peaked with a critical value of density. If the desnity fell or rose
-              too high, this optimal amount of lane changing dropped. 
+              \item Nagatani implements a two lane model as an extension of a
+              one dimensional cellular automaton to monitor lane changing. Their
+              model is essentially two 1-dimensional lattaces to represent a two
+              lane roadway. Rules using arrows within the lattace were
+              deteremined to allow cars to change lanes at certain times such as
+              when a car infront was blocking the path to progress forward from
+              either the right to left direcetion or vice versa. These rules
+              were dependent on the time step. Overall the results showed that
+              as the cars general velocity increased, there was a usage of lane
+              shifting without cars obstructing progress. As density increases,
+              the maximal velocity decreases. There was a "sweet-spot"
+              indicating the optimal amount of lane changing within a set of
+              density of traffic where lane changing peaked with a critical
+              value of density. If the desnity fell or rose too high, this
+              optimal amount of lane changing dropped. 
           \end{description}
     \item Multi-value cellular automata model for mixed bicycle flow
           \cite{jia_multi-value_2007}
           \begin{description}
-              \item Instead of car and vehicle traffic like the other papers, this paper focuses on mixed bicycle flow using a multi valued cellular automata. Here the authors implemented two bicycles
-              with different maximum speeds. The usage of bicycles to compare to vehicles have an emphasis on the behavioral and personality aspect that can be difficult to analyze with cars.
-              The authors explain that young riders tend to ride at high speeds while older riders ride at a lower speed. These differences show that there is no maxium velocity. In this 
-              model, bicycles can move to their next open site with faster bicycles moving with priority over slower bicycles. It was shown similarily to vehicles that slow bicycles that 
-              congregate and occupy sites, block faster moving bicycles that cannot overtake and thus move in a platoon order. Increasing slow bicycle density will congest and bottleneck
-              the simulation. One of the points that B. Jia and the authors mention that cannot be properly analysed is the nature of riders that group together because they are classmates
-              or friends thus this simulation does have some flaws. Increasing randomization of the locations and density of slow riders tended to allow more free flow and less bottlenecking.
+              \item Instead of car and vehicle traffic like the other papers,
+              this paper focuses on mixed bicycle flow using a multi valued
+              cellular automata. Here the authors implemented two bicycles with
+              different maximum speeds. The usage of bicycles to compare to
+              vehicles have an emphasis on the behavioral and personality aspect
+              that can be difficult to analyze with cars. The authors explain
+              that young riders tend to ride at high speeds while older riders
+              ride at a lower speed. These differences show that there is no
+              maxium velocity. In this model, bicycles can move to their next
+              open site with faster bicycles moving with priority over slower
+              bicycles. It was shown similarily to vehicles that slow bicycles
+              that congregate and occupy sites, block faster moving bicycles
+              that cannot overtake and thus move in a platoon order. Increasing
+              slow bicycle density will congest and bottleneck the simulation.
+              One of the points that B. Jia and the authors mention that cannot
+              be properly analysed is the nature of riders that group together
+              because they are classmates or friends thus this simulation does
+              have some flaws. Increasing randomization of the locations and
+              density of slow riders tended to allow more free flow and less
+              bottlenecking.
           \end{description}
     \item Cellular automaton model for bidirectional traffic
           \cite{simon_cellular_1998-1}
