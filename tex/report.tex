@@ -1,28 +1,116 @@
-\documentclass[12pt]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{authblk}
+\documentclass[sigplan,screen]{acmart}
 
-\title{Improved Macroscopic Traffic Flow Modelling with Cellular Automata}
-\author[1]{Andy Vu}
-\author[1]{Oliver Tran}
-\author[1]{Sanjeev Khemani}
-\author[1]{Noah Gardner}
-\affil[1]{College of Computing and Software Engineering, Kennesaw State University}
-\date{\today}
-\renewcommand\Authands{ and }
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
 
+%% Rights management information.  This information is sent to you % when you
+%complete the rights form.  These commands have SAMPLE % values in them; it is
+%your responsibility as an author to replace % the commands and values with
+%those provided to you when you % complete the rights form.
+\setcopyright{acmcopyright}
+\copyrightyear{2018}
+\acmYear{2018} \acmDOI{10.1145/1122445.1122456}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+% \acmConference[Woodstock '18]{Woodstock '18: ACM Symposium on Neural Gaze
+%   Detection}{June 03--05, 2018}{Woodstock, NY} \acmBooktitle{Woodstock '18: ACM
+%   Symposium on Neural Gaze Detection, June 03--05, 2018, Woodstock, NY}
+%   \acmPrice{15.00} \acmISBN{978-1-4503-XXXX-X/18/06}
+
+%%
+%% Submission ID. % Use this when submitting an article to a sponsored event.
+%You'll % receive a unique submission ID from the organizers % of the event, and
+%this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% end of the preamble, start of the body of the document source.
 \begin{document}
+\title{Improved Macroscopic Traffic Flow Modelling with Cellular Automata}
+
+%%
+%% The "author" command and its associated commands are used to define % the
+%authors and their affiliations. % Of note is the shared affiliation of the
+%first two authors, and the % "authornote" and "authornotemark" commands % used
+%to denote shared contribution to the research.
+\author{Noah Gardner}
+\authornote{All authors contributed equally to this research.}
+\email{ngardn10@students.kennesaw.edu}
+\orcid{0000-0001-5900-9841}
+\affiliation{%
+    \institution{College of Computing and Software Engineering }
+    \streetaddress{1100 South Marietta}
+    \city{Marietta}
+    \state{Georgia}
+    \country{USA}
+    \postcode{30060}
+}
+
+\author{Andy Vu}
+\authornotemark[1]
+\affiliation{%
+    \institution{College of Computing and Software Engineering }
+    \streetaddress{1100 South Marietta}
+    \city{Marietta}
+    \state{Georgia}
+    \country{USA}
+    \postcode{30060}
+}
+
+\author{Olivier Tran}
+\authornotemark[1]
+\affiliation{%
+    \institution{College of Computing and Software Engineering }
+    \streetaddress{1100 South Marietta}
+    \city{Marietta}
+    \state{Georgia}
+    \country{USA}
+    \postcode{30060}
+}
+
+\author{Sanjeev Khemani}
+\authornotemark[1]
+\affiliation{%
+    \institution{College of Computing and Software Engineering }
+    \streetaddress{1100 South Marietta}
+    \city{Marietta}
+    \state{Georgia}
+    \country{USA}
+    \postcode{30060}
+}
+
+%%
+%% By default, the full list of authors will be used in the page % headers.
+%Often, this list is too long, and will overlap % other information printed in
+%the page headers. This command allows % the author to define a more concise
+%list % of authors' names for this purpose.
+\renewcommand{\shortauthors}{Trovato and Tobin, et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the % article.
+\begin{abstract}
+    This paper is based on another research paper in cellular automata in which
+    city traffic and its affection by factors like distributed occurrence,
+    evanescence, and time variation is observed on a two-dimensional grid. The
+    variables used in this new experiment include diagonal paths, one-way streets,
+    pre-generated flows, varying speeds, varying destination priority, and
+    different types of roads. With these additional factors in the experiment, the
+    results of the new simulation will yield results that more accurately reflect
+    the environment of real-world traffic.
+\end{abstract}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe % the work
+%being presented. Separate the keywords with commas.
+\keywords{traffic flow, cellular automata}
+
+%%
+%% This command processes the author and affiliation and title % information and
+%builds the first part of the formatted document.
 \maketitle
-\section{Abstract}
-This paper is based on another research paper in cellular automata in which city
-traffic and its affection by factors like distributed occurrence, evanescence,
-and time variation is observed on a two-dimensional grid. The variables used in
-this new experiment include diagonal paths, one-way streets, pre-generated
-flows, varying speeds, varying destination priority, and different types of
-roads. With these additional factors in the experiment, the results of the new
-simulation will yield results that more accurately reflect the environment of
-real-world traffic.
 
 \section{Research Statement}
 There are a few interesting changes we could make to the original algorithm in
@@ -52,38 +140,36 @@ streets, so that may be valuable for a traffic flow model as well.
     \item Simulation of urban macro-traffic flow based on cellular automata
           \cite{pang_simulation_2019}
           \begin{description}
-              \item This paper uses a cellular automata model to simulate
-                    traffic flow on a two-dimensional grid. Traffic flows are
-                    randomly generated that have a certain amount of traffic
-                    (low or heavy) and also have a random destination. There
-                    exists a grid with cells filled in which are meant to model
-                    the roads for the traffic flow to move on. On each timestep,
-                    the traffic flows move towards their destination using a
-                    minimum distance method. The cells can hold a certain amount
-                    of traffic capacity. When the traffic capacity for a cell is
-                    reached, the cell will not allow new traffic flows to enter
-                    the cell. The cell also have a traffic volume, which helps
-                    the programmer to see at a glance which cells have high and
-                    low volumes of traffic.
+              \item This paper uses a cellular automata model to simulate traffic
+                    flow on a two-dimensional grid. Traffic flows are randomly
+                    generated that have a certain amount of traffic (low or heavy)
+                    and also have a random destination. There exists a grid with
+                    cells filled in which are meant to model the roads for the
+                    traffic flow to move on. On each timestep, the traffic flows
+                    move towards their destination using a minimum distance method.
+                    The cells can hold a certain amount of traffic capacity. When
+                    the traffic capacity for a cell is reached, the cell will not
+                    allow new traffic flows to enter the cell. The cell also have a
+                    traffic volume, which helps the programmer to see at a glance
+                    which cells have high and low volumes of traffic.
           \end{description}
     \item A cellular automaton model for freeway traffic
           \cite{nagel_cellular_1992}
           \begin{description}
-              \item Nagel and Schreckenberg have gone away from the typical
-                    fluid dynamical approaches to traffic flow studies during
-                    this time to the use of a more revoluationary technique. The
-                    need for this was to introduce a factor of laminar
-                    start-stop waves with increasing vehicle density with an
-                    emphasis on human behavior a traffic environment. In their
-                    model, it is represented as a single dimensional array where
-                    each cell may be a vehicle with functions to accelearte,
-                    slow down, as well as randomized velocities. These functions
-                    are to represent the randomness in human behavior and
-                    varying conditions that are expected during traffic. The
-                    authors concluded that a computational way to simulate
-                    traffic flow, was more advantagous to a fluid dynamical
-                    approach that incorporated real world behavior ofa driver
-                    but also retained the key aspects of fluid dynamic studies.
+              \item Nagel and Schreckenberg have gone away from the typical fluid
+                    dynamical approaches to traffic flow studies during this time to
+                    the use of a more revoluationary technique. The need for this
+                    was to introduce a factor of laminar start-stop waves with
+                    increasing vehicle density with an emphasis on human behavior a
+                    traffic environment. In their model, it is represented as a
+                    single dimensional array where each cell may be a vehicle with
+                    functions to accelearte, slow down, as well as randomized
+                    velocities. These functions are to represent the randomness in
+                    human behavior and varying conditions that are expected during
+                    traffic. The authors concluded that a computational way to
+                    simulate traffic flow, was more advantagous to a fluid dynamical
+                    approach that incorporated real world behavior ofa driver but
+                    also retained the key aspects of fluid dynamic studies.
           \end{description}
     \item Self-organization and phase transition in traffic-flow model of a
           two-lane roadway \cite{nagatani_self-organization_1993}
@@ -98,24 +184,23 @@ streets, so that may be valuable for a traffic flow model as well.
     \item Cellular automaton model for bidirectional traffic
           \cite{simon_cellular_1998-1}
           \begin{description}
-              \item Simon and Gutowitz have built upon the paper referenced
-                    above by Nagel and Schreckenberg. Here they are implementing
-                    a bidrectional traffic using a two lane road with traffic
-                    moving in opposite direction in comparison to Nagel and
-                    Schreckenberg's one lane cellular automaton. They have
-                    incorporated inteteractions to simulate passing, as well as
-                    a distribution of varying vehicle speeds. Once again, Simon
-                    and gutowitz, like their reference model, had an emphasis on
-                    approximating the behavior of real traffic and human
-                    behavior. They wanted to address the issue of a one lane
-                    cellular atomaton where all vehicles have a maximum velocity
-                    and thus the model unrealistically follows a lead slow car,
-                    hence the need and emphasis on passing. The bidirectional
-                    model varried in types where there was varrying rules
-                    regarding passing. The researchers have found that passing
-                    greatly increases fluidity in traffic not seen in single
-                    dimensional cellular automaton and greatly resembles real
-                    world traffic dynamics and flow.
+              \item Simon and Gutowitz have built upon the paper referenced above by
+                    Nagel and Schreckenberg. Here they are implementing a
+                    bidrectional traffic using a two lane road with traffic moving
+                    in opposite direction in comparison to Nagel and Schreckenberg's
+                    one lane cellular automaton. They have incorporated
+                    inteteractions to simulate passing, as well as a distribution of
+                    varying vehicle speeds. Once again, Simon and gutowitz, like
+                    their reference model, had an emphasis on approximating the
+                    behavior of real traffic and human behavior. They wanted to
+                    address the issue of a one lane cellular atomaton where all
+                    vehicles have a maximum velocity and thus the model
+                    unrealistically follows a lead slow car, hence the need and
+                    emphasis on passing. The bidirectional model varried in types
+                    where there was varrying rules regarding passing. The
+                    researchers have found that passing greatly increases fluidity
+                    in traffic not seen in single dimensional cellular automaton and
+                    greatly resembles real world traffic dynamics and flow.
           \end{description}
 \end{itemize}
 
@@ -125,33 +210,27 @@ traffic flow model. We may also include a GUI to visualize the traffic flow on
 each time step. This section will be expanded as the project progresses.
 
 \section{Milestones}
-
 \begin{tabular}{|l|l|}
     \hline
-    \textbf{Date} & \textbf{Milestone}                                             \\
+    \textbf{Date} & \textbf{Milestone}                                      \\
     \hline
-    $9/24/2021$   & \textbf{Project Deliverable 1}                                 \\
+    $9/24/2021$   & \textbf{Project Deliverable 1}                          \\
     \hline
-                  & Implement the original cellular automata and algorithm         \\
+                  & Implement the original algorithm                        \\
     \hline
-                  & Add weights to the cells to model different types of roads     \\
+                  & Add weights to the cells                                \\
     \hline
-                  & Add destination priorities to model different types of traffic \\
+                  & Add destination priorities                              \\
     \hline
-                  & Model different traffic environments (one-way, etc.)
-    \\
+                  & Model different traffic environments (one-way, etc.)    \\
     \hline
-    $10/29/2021$  & \textbf{Project Deliverable 2}
-    \\
+    $10/29/2021$  & \textbf{Project Deliverable 2}                          \\
     \hline
-                  & Create different environments to run our proposed algorithm
-    \\
+                  & Create different environments                           \\
     \hline
-                  & Collect experimental results and present findings
-    \\
+                  & Collect experimental results and present findings       \\
     \hline
-                  & \textit{Optional} Add GUI to visualize the traffic flow
-    \\
+                  & \textit{Optional} Add GUI to visualize the traffic flow \\
     \hline
 \end{tabular}
 
@@ -163,15 +242,17 @@ our project inside of a github repository, where we can easily share our updated
 code. We plan to make use of pair-programming sessions, where we can collaborate
 while also sharing the load of programming.
 
+\textbf{Members' Roles}
 \begin{itemize}
-    \item \textbf{Members' Roles}
+
     \item[-] \textbf{Andy Vu:} Programming, Writing
     \item[-] \textbf{Olivier Tran:} Programming, Writing, Submitting Documents
     \item[-] \textbf{Sanjeev Khemani:} Programming, Writing
     \item[-] \textbf{Noah Gardner:} Programming, Writing, Source Control
 \end{itemize}
 
+\bibliographystyle{ACM-Reference-Format}
 \bibliography{report}
-\bibliographystyle{unsrt}
 
 \end{document}
+\endinput
