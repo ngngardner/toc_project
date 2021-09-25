@@ -1,8 +1,8 @@
-{ pkgs ? import ./nix { } }:
+{ pkgs }:
 pkgs.mkShell {
   packages = [
     (pkgs.texlive.combine { inherit (pkgs.texlive) 
-      scheme-full 
+      scheme-small 
       xstring 
       iftex
       totpages
