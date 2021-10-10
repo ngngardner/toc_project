@@ -1,0 +1,2 @@
+[flake8]
+max-local-variables = 7

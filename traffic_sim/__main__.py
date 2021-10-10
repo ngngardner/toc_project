@@ -4,7 +4,7 @@ import logging
 import sys
 from os import path
 
-from traffic_sim.core import example
+logger = logging.getLogger(__name__)
 
 if not __package__:
     _path = path.realpath(path.abspath(__file__))
@@ -24,7 +24,7 @@ def init():
 def main():
     """Run code from CLI."""
     init()
-    example('test')
+    logger.info('Main not implemented yet.')
 
 
 if __name__ == '__main__':

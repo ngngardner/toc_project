@@ -30,6 +30,8 @@
           ];
         };
 
+        defaultPackage = self.packages.${system}.${packageName};
+
         devShell = pkgs.mkShell {
           buildInputs = [
             # python
@@ -39,14 +41,16 @@
             pkgs.python39Packages.poetry
 
             # tex
-            (pkgs.texlive.combine { inherit (pkgs.texlive) 
-              scheme-small 
-              xstring 
-              iftex
-              totpages
-              environ
-              hyperxmp
-            ; })
+            (pkgs.texlive.combine {
+              inherit (pkgs.texlive)
+                scheme-small
+                xstring
+                iftex
+                totpages
+                environ
+                hyperxmp
+                ;
+            })
           ];
         };
       });
