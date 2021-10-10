@@ -1,2 +1,3 @@
 [flake8]
 max-local-variables = 7
+ignore = F401, WPS323

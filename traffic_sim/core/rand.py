@@ -1,12 +1,10 @@
 """Random module for core functions."""
 
-from dataclasses import dataclass
 from typing import Optional
 
 from numpy.random import Generator, default_rng
 
 
-@dataclass
 class RandomGenerator(object):
     """Base class with rng functionality."""
 

@@ -4,7 +4,7 @@ import logging
 import sys
 from os import path
 
-from traffic_sim.core.matrix import TrafficMatrix
+from traffic_sim.matrix import TrafficMatrix
 
 logger = logging.getLogger(__name__)
 
