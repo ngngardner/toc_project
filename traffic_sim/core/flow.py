@@ -30,7 +30,7 @@ class TrafficFlow(object):
         self.location = location
         self.dest = dest
         self.volume = volume
-        self.possible_moves = self.all_moves()
+        self.renew_moves()
 
     def all_moves(self) -> dict:
         """Calculate all possible moves.
@@ -48,6 +48,10 @@ class TrafficFlow(object):
                     point, (pos[2], pos[3]),
                 )
         return moves
+
+    def renew_moves(self):
+        """Renew the possible moves."""
+        self.possible_moves = self.all_moves()
 
     def move_params(self) -> Tuple[int, int, int, int]:
         """

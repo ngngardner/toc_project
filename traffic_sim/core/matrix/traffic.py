@@ -78,6 +78,7 @@ class TrafficMatrix(MatrixHelper):
     def step_flows(self) -> None:
         """Get the next move for every flow and execute."""
         for flow in self.flows:
+            flow.renew_moves()
             moves = flow.moves_list()
             for move in moves:
                 if not self.is_valid(move) or self.is_full(move):
