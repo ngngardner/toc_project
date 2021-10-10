@@ -87,3 +87,12 @@ class TrafficFlow(object):
         current location.
         """
         self.location = min(self.moves_list())
+
+    def is_complete(self) -> bool:
+        """
+        Check if the flow is complete.
+
+        Returns:
+            bool: True if the flow is complete, False otherwise.
+        """
+        return self.location == self.dest

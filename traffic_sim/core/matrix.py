@@ -45,7 +45,7 @@ class MatrixHelper(RandomGenerator):
         self.cmatrix[3, :] = 3
         self.cmatrix[:, 5] = 4
 
-    def clear_volume(self):
+    def clear_volume(self) -> None:
         """Clear traffic volume matrix."""
         self.vmatrix = np.zeros((self.rows, self.cols), dtype=int)
 
@@ -60,7 +60,7 @@ class MatrixHelper(RandomGenerator):
         """
         return self.cmatrix[pos]
 
-    def volume(self, pos: tuple):
+    def volume(self, pos: tuple) -> int:
         """Return traffic cell volume given a position.
 
         Args:
@@ -161,13 +161,22 @@ class TrafficMatrix(MatrixHelper):
         """
         for _ in range(iterations):
             self.generate_flows()
-            self.update_flows()
+            self.step_flows()
             self.update_matrix()
+            self.pop_flows()
 
     def generate_flows(self) -> None:
-        """Generate traffic flows based on density."""
+        """
+        Generate traffic flows based on density.
+
+        Returns:
+            None
+        """
         num_cells = self.rows * self.cols * self.density
         num_cells = round(num_cells) - len(self.flows)
+        if num_cells <= 0:
+            # no new flows to generate, so return
+            return None
 
         # create flow origins and destinations
         origins = coord_list(self.select_cells(num_cells))
@@ -181,7 +190,7 @@ class TrafficMatrix(MatrixHelper):
             flow = TrafficFlow(origins[idx], dests[idx], volume)
             self.flows.append(flow)
 
-    def update_flows(self):
+    def step_flows(self) -> None:
         """Get the next move for every flow and execute."""
         for flow in self.flows:
             moves = flow.moves_list()
@@ -190,7 +199,11 @@ class TrafficMatrix(MatrixHelper):
                     flow.unset_move(move)
             flow.step()
 
-    def update_matrix(self):
+    def pop_flows(self) -> None:
+        """Remove completed flows."""
+        self.flows = [flow for flow in self.flows if not flow.is_complete()]
+
+    def update_matrix(self) -> None:
         """Update traffic volume matrix based on current flows."""
         self.vmatrix = np.zeros(self.vmatrix.shape, dtype=int)
 
