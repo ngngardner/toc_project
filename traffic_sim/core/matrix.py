@@ -174,20 +174,17 @@ class TrafficMatrix(MatrixHelper):
         dests = coord_list(self.select_cells(num_cells))
 
         for idx in range(num_cells):
-            # capacity of the flow is a random number between 1 and capacity-1
-            capacity = self.rng.choice(
-                range(1, self.capacity(origins[idx])),
-            )
+            # volume of the flow is a random number between 1 and capacity-1
+            capacity = self.capacity(origins[idx])
+            volume = self.rng.choice(range(1, capacity))
 
-            # create flow with the origin, destination, and capacity
-            flow = TrafficFlow(origins[idx], dests[idx], capacity)
-            flow.reset_moves()
+            flow = TrafficFlow(origins[idx], dests[idx], volume)
             self.flows.append(flow)
 
     def update_flows(self):
         """Get the next move for every flow and execute."""
         for flow in self.flows:
-            moves = flow.all_moves()
+            moves = flow.moves_list()
             for move in moves:
                 if not self.is_valid(move) or self.is_full(move):
                     flow.unset_move(move)
@@ -195,9 +192,9 @@ class TrafficMatrix(MatrixHelper):
 
     def update_matrix(self):
         """Update traffic volume matrix based on current flows."""
-        self.reset_volume()
+        self.vmatrix = np.zeros(self.vmatrix.shape, dtype=int)
 
         for flow in self.flows:
             location = flow.location
-            capacity = flow.capacity
-            self.vmatrix[location] += capacity
+            volume = flow.volume
+            self.vmatrix[location] += volume

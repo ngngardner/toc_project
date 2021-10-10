@@ -1,43 +1,53 @@
 """Traffic flow module for core functions."""
 
-from dataclasses import dataclass
 from typing import List, Tuple
 
 from traffic_sim.core.distance import euclidean
 
 
-@dataclass
 class TrafficFlow(object):
     """A traffic flow represents a group of vehicles."""
 
     location: tuple
     dest: tuple
-    capacity: int
+    volume: int
     possible_moves: dict
 
-    def __init__(self, location: tuple, dest: tuple, capacity: int):
+    def __init__(
+        self,
+        location: tuple,
+        dest: tuple,
+        volume: int,
+    ):
         """
         Initialize a traffic flow.
 
         Args:
             location (tuple): (row, col) of the current location.
             dest (tuple): (row, col) of the destination.
-            capacity (int): The maximum capacity of the flow.
+            volume (int): The volume of the flow.
         """
         self.location = location
         self.dest = dest
-        self.capacity = capacity
+        self.volume = volume
         self.possible_moves = self.all_moves()
 
-    def all_moves(self) -> None:
-        """Calculate all possible moves."""
-        loc_x, loc_y, dest_x, dest_y = self.get_move_params()
+    def all_moves(self) -> dict:
+        """Calculate all possible moves.
+
+        Returns:
+            dict: Dictionary of possible moves with position as the key and
+            distance as the value.
+        """
+        moves = {}
+        pos = self.move_params()
         for diff_i in range(-1, 2):
             for diff_j in range(-1, 2):
-                point = (loc_x + diff_i, loc_y + diff_j)
-                self.possible_moves[point] = euclidean(
-                    point, (dest_x, dest_y),
+                point = (pos[0] + diff_i, pos[1] + diff_j)
+                moves[point] = euclidean(
+                    point, (pos[2], pos[3]),
                 )
+        return moves
 
     def move_params(self) -> Tuple[int, int, int, int]:
         """
@@ -47,7 +57,9 @@ class TrafficFlow(object):
             Tuple[int, int, int, int]: (row, col, row, col) of current location
             and desination.
         """
-        return self.location, self.dest
+        loc_x, loc_y = self.location
+        dest_x, dest_y = self.dest
+        return loc_x, loc_y, dest_x, dest_y
 
     def moves_list(self) -> List[tuple]:
         """

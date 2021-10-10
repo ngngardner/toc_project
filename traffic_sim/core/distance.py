@@ -14,7 +14,13 @@ def coord_list(coords: tuple) -> List[Tuple[int, int]]:
     Returns:
         List of coordinates.
     """
-    return [(coord[0], coord[1]) for coord in coords]
+    res = []
+    size = range(len(coords[0]))
+    for idx in size:
+        x_coord = coords[0][idx]
+        y_coord = coords[1][idx]
+        res.append((x_coord, y_coord))
+    return res
 
 
 def euclidean(p1: Tuple[int, int], p2: Tuple[int, int]) -> int:
