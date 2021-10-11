@@ -90,7 +90,7 @@ class TrafficFlow(object):
         Move from the current location to the destination and update the
         current location.
         """
-        self.location = min(self.moves_list())
+        self.location = min(self.possible_moves, key=self.possible_moves.get)
 
     def is_complete(self) -> bool:
         """
