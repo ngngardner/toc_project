@@ -4,7 +4,9 @@ import logging
 import sys
 from os import path
 
-from traffic_sim.core import example
+from traffic_sim.matrix import TrafficMatrix
+
+logger = logging.getLogger(__name__)
 
 if not __package__:
     _path = path.realpath(path.abspath(__file__))
@@ -23,8 +25,12 @@ def init():
 
 def main():
     """Run code from CLI."""
+    # init logging
     init()
-    example('test')
+
+    # traffic matrix
+    tm = TrafficMatrix(10, 10)
+    tm.run(5)
 
 
 if __name__ == '__main__':

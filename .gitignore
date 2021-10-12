@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+.vscode
+.direnv
+=======
 
 # nix
+result
 result/**
 
 # custom
@@ -136,3 +141,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+>>>>>>> 837e032a82422226af5209cc4e15e7fb8dc0ab89
