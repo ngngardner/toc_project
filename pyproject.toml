@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "traffic_sim"
+version = "0.1.0"
+description = ""
+authors = ["ngngardner <ngngardner@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+numpy = "^1.21.2"
+matplotlib = "^3.4.3"
+seaborn = "^0.11.2"
+
+[tool.poetry.dev-dependencies]
+jupyter = "^1.0.0"
+ipykernel = "^6.4.1"
+
+wemake-python-styleguide = "^0.15.3"
+flake8 = "^3.9.2"
+autopep8 = "^1.5.7"
+
+[tool.poetry.scripts]
+traffic = 'traffic_sim.__main__:main'
+
+[tool.pyright]
+include = ["traffic_sim/**/*"]
+reportMissingTypeStubs = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
