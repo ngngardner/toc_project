@@ -2,21 +2,6 @@
   description = "Theory of Computation Project";
 
   inputs = {
-<<<<<<< HEAD
-    nixpkgs.url = "github:nixos/nixpkgs/release-21.05";
-    flake-utils = { url = "github:numtide/flake-utils"; };
-  };
-
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let pkgs = nixpkgs.legacyPackages.${system}; in
-        {
-          devShell = import ./shell.nix { inherit pkgs;};
-        }
-      );
-}
-=======
     nixpkgs.url = "github:nixos/nixpkgs/d189bf92f9be23f9b0f6c444f6ae29351bb7125c";
     utils = { url = "github:numtide/flake-utils"; };
     compat = { url = "github:edolstra/flake-compat"; flake = false; };
@@ -70,4 +55,3 @@
         };
       });
 }
->>>>>>> 837e032a82422226af5209cc4e15e7fb8dc0ab89
