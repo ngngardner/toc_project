@@ -32,6 +32,20 @@ class TrafficFlow(object):
         self.volume = volume
         self.renew_moves()
 
+    def __str__(self) -> str:
+        """
+        Return a string representation of the flow.
+
+        Returns:
+            str: String representation of the flow.
+        """
+        res = {
+            'location': self.location,
+            'dest': self.dest,
+            'volume': self.volume,
+        }
+        return str(res)
+
     def all_moves(self) -> dict:
         """Calculate all possible moves.
 

@@ -38,25 +38,17 @@ class TrafficMatrix(MatrixHelper):
         self.density = density
         self.flows = []
 
-    def run(self, iterations: int) -> None:
-        """Run the traffic simulation.
+    def step(self) -> None:
+        """Step through the traffic simulation."""
+        self.generate_flows()
+        self.step_flows()
+        self.update_matrix()
+        self.pop_flows()
 
-        Args:
-            iterations (int): Number of iterations to run.
-        """
-        for _ in range(iterations):
-            self.generate_flows()
-            self.step_flows()
-            self.update_matrix()
-            self.pop_flows()
+    
 
     def generate_flows(self) -> None:
-        """
-        Generate traffic flows based on density.
-
-        Returns:
-            None
-        """
+        """Generate traffic flows based on density."""
         num_cells = self.rows * self.cols * self.density
         num_cells = round(num_cells) - len(self.flows)
         if num_cells <= 0:
