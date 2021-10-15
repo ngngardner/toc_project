@@ -5,7 +5,7 @@ from typing import List, Optional
 import numpy as np
 
 from traffic_sim.core.distance import coord_list
-from traffic_sim.core.flow import TrafficFlow
+from traffic_sim.core.flow.flow import TrafficFlow
 from traffic_sim.core.matrix.base import MatrixHelper
 
 
@@ -45,8 +45,6 @@ class TrafficMatrix(MatrixHelper):
         self.update_matrix()
         self.pop_flows()
 
-    
-
     def generate_flows(self) -> None:
         """Generate traffic flows based on density."""
         num_cells = self.rows * self.cols * self.density
@@ -83,7 +81,7 @@ class TrafficMatrix(MatrixHelper):
 
     def update_matrix(self) -> None:
         """Update traffic volume matrix based on current flows."""
-        self.vmatrix = np.zeros(self.vmatrix.shape, dtype=int)
+        self.clear_volume()
 
         for flow in self.flows:
             location = flow.location

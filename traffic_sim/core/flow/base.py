@@ -1,13 +1,12 @@
-"""Traffic flow module for core functions."""
+"""Base class for traffic flow operations."""
 
 from typing import List, Tuple
 
-from traffic_sim.core.distance import euclidean
 
+class FlowHelper(object):
+    """Flow helper class."""
 
-class TrafficFlow(object):
-    """A traffic flow represents a group of vehicles."""
-
+    prev: tuple
     location: tuple
     dest: tuple
     volume: int
@@ -32,46 +31,6 @@ class TrafficFlow(object):
         self.volume = volume
         self.renew_moves()
 
-    def __str__(self) -> str:
-        """
-        Return a string representation of the flow.
-
-        Returns:
-            str: String representation of the flow.
-        """
-        res = {
-            'location': self.location,
-            'dest': self.dest,
-            'volume': self.volume,
-        }
-        return str(res)
-
-    def all_moves(self) -> dict:
-        """Calculate all possible moves.
-
-        Returns:
-            dict: Dictionary of possible moves with position as the key and
-            distance as the value.
-        """
-        moves = {}
-        pos = self.move_params()
-        for diff_i in (-1, 0, 1):
-            point = (pos[0] + diff_i, pos[1])
-            moves[point] = euclidean(
-                point, (pos[2], pos[3]),
-            )
-
-        for diff_j in (-1, 1):
-            point = (pos[0], pos[1] + diff_j)
-            moves[point] = euclidean(
-                point, (pos[2], pos[3]),
-            )
-        return moves
-
-    def renew_moves(self):
-        """Renew the possible moves."""
-        self.possible_moves = self.all_moves()
-
     def move_params(self) -> Tuple[int, int, int, int]:
         """
         Return the current location and destination.
@@ -93,6 +52,15 @@ class TrafficFlow(object):
         """
         return list(self.possible_moves.keys())
 
+    def is_complete(self) -> bool:
+        """
+        Check if the flow is complete.
+
+        Returns:
+            bool: True if the flow is complete, False otherwise.
+        """
+        return self.location == self.dest
+
     def unset_move(self, move: tuple) -> None:
         """
         Given a move, remove it as a possible move(due to full capacity).
@@ -107,15 +75,7 @@ class TrafficFlow(object):
         Calculate the next step to move.
 
         Move from the current location to the destination and update the
-        current location.
+        current location. Also, update the previous location.
         """
+        self.prev = self.location
         self.location = min(self.possible_moves, key=self.possible_moves.get)
-
-    def is_complete(self) -> bool:
-        """
-        Check if the flow is complete.
-
-        Returns:
-            bool: True if the flow is complete, False otherwise.
-        """
-        return self.location == self.dest

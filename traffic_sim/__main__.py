@@ -5,6 +5,7 @@ import sys
 from os import path
 
 from traffic_sim.matrix import TrafficMatrix
+from traffic_sim.sim import TrafficSim
 
 logger = logging.getLogger(__name__)
 
@@ -28,9 +29,17 @@ def main():
     # init logging
     init()
 
-    # traffic matrix
+    # set traffic capacities (hardcoded)
     tm = TrafficMatrix(10, 10)
-    tm.run(5)
+    tm.cmatrix[:, 2] = 2
+    tm.cmatrix[:, 8] = 2
+    tm.cmatrix[3, :] = 3
+    tm.cmatrix[:, 5] = 4
+
+    # simulate traffic
+    sim = TrafficSim(tm)
+    sim.run(10)
+    sim.savefig('traffic_sim')
 
 
 if __name__ == '__main__':
