@@ -36,12 +36,6 @@ class MatrixHelper(RandomGenerator):
         self.cmatrix = np.zeros((rows, cols), dtype=int)
         self.vmatrix = np.zeros((rows, cols), dtype=int)
 
-        # set traffic capacities (hardcoded)
-        self.cmatrix[:, 2] = 2
-        self.cmatrix[:, 8] = 2
-        self.cmatrix[3, :] = 3
-        self.cmatrix[:, 5] = 4
-
     def clear_volume(self) -> None:
         """Clear traffic volume matrix."""
         self.vmatrix = np.zeros((self.rows, self.cols), dtype=int)

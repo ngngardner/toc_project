@@ -41,12 +41,17 @@ class TrafficFlow(object):
         """
         moves = {}
         pos = self.move_params()
-        for diff_i in range(-1, 2):
-            for diff_j in range(-1, 2):
-                point = (pos[0] + diff_i, pos[1] + diff_j)
-                moves[point] = euclidean(
-                    point, (pos[2], pos[3]),
-                )
+        for diff_i in (-1, 0, 1):
+            point = (pos[0] + diff_i, pos[1])
+            moves[point] = euclidean(
+                point, (pos[2], pos[3]),
+            )
+
+        for diff_j in (-1, 1):
+            point = (pos[0], pos[1] + diff_j)
+            moves[point] = euclidean(
+                point, (pos[2], pos[3]),
+            )
         return moves
 
     def renew_moves(self):
