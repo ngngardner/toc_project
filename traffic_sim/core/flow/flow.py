@@ -1,5 +1,7 @@
 """Traffic flow module for core functions."""
 
+from beartype import beartype
+
 from traffic_sim.core.distance import euclidean
 from traffic_sim.core.flow.base import FlowHelper
 
@@ -54,18 +56,20 @@ class TrafficFlow(FlowHelper):
         """Renew the possible moves."""
         self.possible_moves = self.all_moves()
 
-    def update_move(self, move: tuple, value: int) -> None:
+    @beartype
+    def update_move(self, move: tuple, new: int) -> None:
         """Update the move.
-        
+
         Args:
             move (tuple): The move to update.
-            value (int): The value to update the move with.
+            new (int): The value to update the move with.
         """
-        self.possible_moves[move] = value
+        self.possible_moves[move] = new
 
+    @beartype
     def cost(self, move: tuple) -> float:
         """Get the cost of the move.
-        
+
         Args:
             move (tuple): The move to get the cost of.
 

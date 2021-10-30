@@ -1,8 +1,7 @@
 """Base class for traffic matrix operations."""
 
-from typing import Optional, Tuple
-
 import numpy as np
+from beartype import beartype
 
 from traffic_sim.core.rand import RandomGenerator
 
@@ -15,18 +14,19 @@ class MatrixHelper(RandomGenerator):
     cmatrix: np.ndarray
     vmatrix: np.ndarray
 
+    @beartype
     def __init__(
         self,
         rows: int,
         cols: int,
-        seed: Optional[int] = None,
+        seed: int = None,
     ):
         """Initialize matrix helper class.
 
         Args:
             rows (int): Number of rows in matrix.
             cols (int): Number of columns in matrix.
-            seed (int, optional): Random seed. Defaults to None.
+            seed (int): Random seed.
         """
         super().__init__(seed)
         self.rows = rows
@@ -40,6 +40,7 @@ class MatrixHelper(RandomGenerator):
         """Clear traffic volume matrix."""
         self.vmatrix = np.zeros((self.rows, self.cols), dtype=int)
 
+    @beartype
     def capacity(self, pos: tuple) -> int:
         """Return traffic cell capacity given a position.
 
@@ -49,8 +50,9 @@ class MatrixHelper(RandomGenerator):
         Returns:
             int: Traffic cell capacity.
         """
-        return self.cmatrix[pos]
+        return int(self.cmatrix[pos])
 
+    @beartype
     def volume(self, pos: tuple) -> int:
         """Return traffic cell volume given a position.
 
@@ -60,9 +62,10 @@ class MatrixHelper(RandomGenerator):
         Returns:
             int: Traffic cell volume.
         """
-        return self.vmatrix[pos]
+        return int(self.vmatrix[pos])
 
-    def is_valid(self, pos: tuple) -> bool:
+    @beartype
+    def is_valid(self, pos: tuple[int, int]) -> bool:
         """Return if position is valid (within bounds).
 
         Args:
@@ -75,7 +78,8 @@ class MatrixHelper(RandomGenerator):
         in_col = 0 <= pos[1] < self.cols
         return in_row and in_col
 
-    def is_full(self, pos: tuple) -> bool:
+    @beartype
+    def is_full(self, pos: tuple[int]) -> bool:
         """Check a traffic cell is full(volume exceeds capacity).
 
         Args:
@@ -89,7 +93,8 @@ class MatrixHelper(RandomGenerator):
 
         return self.volume(pos) >= self.capacity(pos)
 
-    def select_cells(self, num_cells: int) -> Tuple[np.ndarray, np.ndarray]:
+    @beartype
+    def select_cells(self, num_cells: int) -> tuple[np.ndarray, np.ndarray]:
         """Randomly choose 'num_cells' cells for creating traffic flows.
 
         Args:
