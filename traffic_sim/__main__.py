@@ -4,7 +4,7 @@ import logging
 import sys
 from os import path
 
-from traffic_sim.matrix import TrafficMatrix
+from traffic_sim.matrix import WeightedMatrix
 from traffic_sim.sim import TrafficSim
 
 logger = logging.getLogger(__name__)
@@ -30,11 +30,12 @@ def main():
     init()
 
     # set traffic capacities (hardcoded)
-    tm = TrafficMatrix(10, 10)
+    tm = WeightedMatrix(10, 10)
     tm.cmatrix[:, 2] = 2
     tm.cmatrix[:, 8] = 2
     tm.cmatrix[3, :] = 3
     tm.cmatrix[:, 5] = 4
+    tm.set_weights()
 
     # simulate traffic
     sim = TrafficSim(tm)

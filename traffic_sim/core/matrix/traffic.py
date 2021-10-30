@@ -1,7 +1,5 @@
 """Traffic matrix class for running simulation algorithm."""
 
-from typing import List, Optional
-
 import numpy as np
 
 from traffic_sim.core.distance import coord_list
@@ -17,22 +15,22 @@ class TrafficMatrix(MatrixHelper):
     cmatrix: np.ndarray
     vmatrix: np.ndarray
     density: float
-    flows: List[TrafficFlow]
+    flows: TrafficFlow
 
     def __init__(
         self,
         rows: int,
         cols: int,
-        density: Optional[float] = 0.05,
-        seed: Optional[int] = None,
+        density: float = 0.05,
+        seed: int = None,
     ):
         """Initialize a traffic simulation object.
 
         Args:
             rows (int): Number of rows in the traffic matrix.
             cols (int): Number of columns in the traffic matrix.
-            density (Optional[float]): Density of traffic flow simulation.
-            seed (Optional[int], optional): Random seed.
+            density (float): Density of traffic flow simulation.
+            seed (int): Random seed.
         """
         super().__init__(rows, cols, seed)
         self.density = density
@@ -46,7 +44,11 @@ class TrafficMatrix(MatrixHelper):
         self.pop_flows()
 
     def generate_flows(self) -> None:
-        """Generate traffic flows based on density."""
+        """Generate traffic flows based on density.
+
+        Returns:
+            None when no flows are generated.
+        """
         num_cells = self.rows * self.cols * self.density
         num_cells = round(num_cells) - len(self.flows)
         if num_cells <= 0:
