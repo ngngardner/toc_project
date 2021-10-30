@@ -50,6 +50,26 @@ class TrafficFlow(FlowHelper):
             )
         return moves
 
-    def renew_moves(self):
+    def renew_moves(self) -> None:
         """Renew the possible moves."""
         self.possible_moves = self.all_moves()
+
+    def update_move(self, move: tuple, value: int) -> None:
+        """Update the move.
+        
+        Args:
+            move (tuple): The move to update.
+            value (int): The value to update the move with.
+        """
+        self.possible_moves[move] = value
+
+    def cost(self, move: tuple) -> float:
+        """Get the cost of the move.
+        
+        Args:
+            move (tuple): The move to get the cost of.
+
+        Returns:
+            float: The cost of the move.
+        """
+        return self.possible_moves[move]
