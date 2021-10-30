@@ -1,9 +1,10 @@
 """Distance module for core functions."""
 
-from typing import List, Tuple
+from beartype import beartype
 
 
-def coord_list(coords: tuple) -> List[Tuple[int, int]]:
+@beartype
+def coord_list(coords: tuple) -> list[tuple[int, int]]:
     """Convert a tuple of coordinates to a list of coordinates.
 
     Useful for converting the output of np.where to a list of coordinates.
@@ -17,13 +18,13 @@ def coord_list(coords: tuple) -> List[Tuple[int, int]]:
     res = []
     size = range(len(coords[0]))
     for idx in size:
-        x_coord = coords[0][idx]
-        y_coord = coords[1][idx]
+        x_coord = int(coords[0][idx])
+        y_coord = int(coords[1][idx])
         res.append((x_coord, y_coord))
     return res
 
 
-def euclidean(p1: Tuple[int, int], p2: Tuple[int, int]) -> int:
+def euclidean(p1: tuple[int, int], p2: tuple[int, int]) -> int:
     """Calculate the distance between two points.
 
     Args:

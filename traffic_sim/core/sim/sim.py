@@ -2,6 +2,7 @@
 
 import numpy as np
 import seaborn as sns
+from beartype import beartype
 from matplotlib import pyplot as plt
 
 from traffic_sim.core.matrix.traffic import TrafficMatrix
@@ -15,6 +16,7 @@ class TrafficSim(object):
     tm: TrafficMatrix
     history: TrafficHistory
 
+    @beartype
     def __init__(self, matrix: TrafficMatrix) -> None:
         """Initialize traffic simulation.
 
@@ -23,6 +25,7 @@ class TrafficSim(object):
         """
         self.tm = matrix
 
+    @beartype
     def run(self, iterations: int) -> None:
         """Run the traffic simulation.
 
@@ -34,6 +37,7 @@ class TrafficSim(object):
             self.tm.step()
             self.history.append(flows=self.tm.flows, volume=self.tm.vmatrix)
 
+    @beartype
     def savefig(self, path: str) -> None:
         """Save the simulation history to an animated .gif file.
 

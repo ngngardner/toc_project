@@ -15,7 +15,7 @@ class WeightedMatrix(TrafficMatrix):
         rows: int,
         cols: int,
         density: float = 0.05,
-        seed: int = None,
+        seed: int = 0,
     ):
         """Initialize a weighted traffic matrix.
 

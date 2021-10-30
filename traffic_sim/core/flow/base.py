@@ -1,6 +1,6 @@
 """Base class for traffic flow operations."""
 
-from typing import List, Tuple
+from beartype import beartype
 
 
 class FlowHelper(object):
@@ -12,6 +12,7 @@ class FlowHelper(object):
     volume: int
     possible_moves: dict
 
+    @beartype
     def __init__(
         self,
         location: tuple,
@@ -31,7 +32,8 @@ class FlowHelper(object):
         self.volume = volume
         self.renew_moves()
 
-    def move_params(self) -> Tuple[int, int, int, int]:
+    @beartype
+    def move_params(self) -> tuple[int, int, int, int]:
         """
         Return the current location and destination.
 
@@ -43,7 +45,8 @@ class FlowHelper(object):
         dest_x, dest_y = self.dest
         return loc_x, loc_y, dest_x, dest_y
 
-    def moves_list(self) -> List[tuple]:
+    @beartype
+    def moves_list(self) -> tuple[tuple]:
         """
         Return a list of possible moves.
 
@@ -52,6 +55,7 @@ class FlowHelper(object):
         """
         return list(self.possible_moves.keys())
 
+    @beartype
     def is_complete(self) -> bool:
         """
         Check if the flow is complete.
@@ -61,6 +65,7 @@ class FlowHelper(object):
         """
         return self.location == self.dest
 
+    @beartype
     def unset_move(self, move: tuple) -> None:
         """
         Given a move, remove it as a possible move(due to full capacity).

@@ -1,6 +1,7 @@
 """Traffic matrix class for running simulation algorithm."""
 
 import numpy as np
+from beartype import beartype
 
 from traffic_sim.core.distance import coord_list
 from traffic_sim.core.flow.flow import TrafficFlow
@@ -17,12 +18,13 @@ class TrafficMatrix(MatrixHelper):
     density: float
     flows: TrafficFlow
 
+    @beartype
     def __init__(
         self,
         rows: int,
         cols: int,
         density: float = 0.05,
-        seed: int = None,
+        seed: int = 0,
     ):
         """Initialize a traffic simulation object.
 

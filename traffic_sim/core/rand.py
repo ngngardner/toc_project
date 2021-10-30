@@ -1,21 +1,21 @@
 """Random module for core functions."""
 
-from typing import Optional
-
+from beartype import beartype
 from numpy.random import Generator, default_rng
 
 
 class RandomGenerator(object):
     """Base class with rng functionality."""
 
-    seed: Optional[int]
+    seed: int
     rng: Generator
 
-    def __init__(self, seed=0):
+    @beartype
+    def __init__(self, seed: int = 0):
         """Initialize the random number generator.
 
         Args:
-            seed (bool, optional): [description]. Defaults to False.
+            seed (int): [description]. Defaults to False.
         """
         if seed:
             self.rng = default_rng(seed)
