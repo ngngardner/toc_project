@@ -96,14 +96,14 @@
 %%
 %% The abstract is a short summary of the work to be presented in the % article.
 \begin{abstract}
-    This paper is based on another research paper in cellular automata in which
-    city traffic and its affection by factors such as distributed occurrence,
-    evanescence, and time variation is observed on a two-dimensional grid. The
+    This paper proposes a method cellular automata-based method in which city
+    traffic and its affection by factors such as distributed occurrence,
+    evanescence, and time variation is simulated on a two-dimensional grid. The
     variables used in this new experiment include diagonal paths, one-way
-    streets, pre-generated flows, varying speeds, varying destination priority,
-    and different types of roads. With these additional factors in the
-    experiment, the results of the new simulation may yield results that more
-    accurately reflect the environment of real-world traffic.
+    streets, pre-generated flows, varying speeds, and different types of roads.
+    With these additional factors in the experiment, the results of the new
+    simulation may yield results that more accurately reflect the environment of
+    real-world traffic.
 \end{abstract}
 
 %%
@@ -128,10 +128,7 @@ chooses it's path automatically as the shortest distance from the starting cell
 to the current cell. Finally, the original paper uses one traffic environment
 with simple two-way roads that are placed on the grid laterally and vertically.
 
-One idea we would like to explore is to add different priorities for cells as
-destinations. If a cell is a high priority destination, then it is more likely
-to be chosen as a destination for a traffic flow when it is generated. Another
-improvement could also allow for modelling of different types of roads. For
+One improvement could allow for modelling of different types of roads. For
 example, rather than the flow taking the shortest path from the source to the
 destination, each cell could have a parameter for the weight of adding that cell
 to the path of the traffic flow. If the weight of adding the cell to the path is
@@ -141,8 +138,7 @@ streets, so that may be valuable for a traffic flow model as well.
 
 \section{Related Works}
 % Simulation of urban macro-traffic flow based on cellular automata
-          
-Authors et al. use a cellular automata model to simulate traffic flow on a
+Pang and Yang use a cellular automata model to simulate traffic flow on a
 two-dimensional grid \cite{pang_simulation_2019}. Traffic flows are randomly
 generated that have a certain amount of traffic (low or heavy) and also have a
 random destination. There exists a grid with cells filled in which are meant to
@@ -154,7 +150,6 @@ The cells also have a traffic volume, which helps the programmer to see at a
 glance which cells have high and low volumes of traffic.
 
 % A cellular automaton model for freeway traffic
-          
 Nagel and Schreckenberg have gone away from the typical fluid dynamical
 approaches to traffic flow studies during this time to the use of a more
 revolutionary technique \cite{nagel_cellular_1992}. The need for this was to
@@ -170,10 +165,9 @@ retained the key aspects of fluid dynamic studies.
 
 % Self-organization and phase transition in traffic-flow model of a two-lane
 % roadway 
-
 Nagatani implements a two lane model as an extension of a one dimensional
-cellular automaton to monitor lane changing.
-\cite{nagatani_self-organization_1993} Their model is essentially two
+cellular automaton to monitor lane changing
+\cite{nagatani_self-organization_1993}. Their model is essentially two
 1-dimensional lattices to represent a two lane roadway. Rules using arrows
 within the lattice were deteremined to allow cars to change lanes at certain
 times such as when a car in front was blocking the path to progress forward from
@@ -185,53 +179,47 @@ indicating the optimal amount of lane changing within a set of density of
 traffic where lane changing peaked with a critical value of density. If the
 density fell or rose too high, this optimal amount of lane changing dropped.
 
-
 % Multi-value cellular automata model for mixed bicycle flow
-
-Instead of car and vehicle traffic like the other papers, this paper focused on
-mixed bicycle flow using a multi valued cellular automata.
-\cite{jia_multi-value_2007} Here the authors implemented two bicycles with
-different maximum speeds. The usage of bicycles to compare to vehicles have an
-emphasis on the behavioral and personality aspect that can be difficult to
-analyze with cars. The authors explain that young riders tend to ride at high
-speeds while older riders ride at a lower speed. These differences show that
-there is no set maxium velocity. In this model, bicycles can move to their next
-open site with faster bicycles moving with priority over slower bicycles. It was
-shown similarily to vehicles that slow bicycles that congregate and occupy
-sites, block faster moving bicycles that cannot overtake and thus move in a
-platoon order. Increasing slow bicycle density will congest and bottleneck the
-simulation. One of the points that B. Jia and the authors mention that cannot be
-properly analysed is the nature of riders that group together because they are
-classmates or friends thus this simulation does have some flaws. Increasing
-randomization of the locations and density of slow riders tended to allow more
-free flow and less bottlenecking.
+Instead of car and vehicle traffic like the other papers, Jia et al. focus on
+mixed bicycle flow using a multi valued cellular automata
+\cite{jia_multi-value_2007}. The authors implemented two bicycles with different
+maximum speeds. The usage of bicycles to compare to vehicles have an emphasis on
+the behavioral and personality aspect that can be difficult to analyze with
+cars. The authors explain that young riders tend to ride at high speeds while
+older riders ride at a lower speed. These differences show that there is no set
+maxium velocity. In this model, bicycles can move to their next open site with
+faster bicycles moving with priority over slower bicycles. It was shown
+similarily to vehicles that slow bicycles that congregate and occupy sites,
+block faster moving bicycles that cannot overtake and thus move in a platoon
+order. Increasing slow bicycle density will congest and bottleneck the
+simulation. One of the points that Jia et al. mention that cannot be properly
+analysed is the nature of riders that carpool, thus this simulation does have
+some flaws. Increasing randomization of the locations and density of slow riders
+tended to allow more free flow and less bottlenecking.
 
 
 % Cellular automaton model for bidirectional traffic
 
 Simon and Gutowitz have built upon the paper referenced above by Nagel and
-Schreckenberg. \cite{simon_cellular_1998-1} Here they are implementing a
+Schreckenberg. \cite{simon_cellular_1998-1}. Here they are implementing a
 bidrectional traffic using a two lane road with traffic moving in opposite
-direction in comparison to Nagel and Schreckenberg's one lane cellular
-automaton. They have incorporated inteteractions to simulate passing, as well as
-a distribution of varying vehicle speeds. Once again, Simon and gutowitz, like
-their reference model, had an emphasis on approximating the behavior of real
-traffic and human behavior. They wanted to address the issue of a one lane
-cellular atomaton where all vehicles have a maximum velocity and thus the model
-unrealistically follows a lead slow car, hence the need and emphasis on passing.
-The bidirectional model varried in types where there was varrying rules
-regarding passing. The researchers have found that passing greatly increases
-fluidity in traffic not seen in single dimensional cellular automaton and
-greatly resembles real world traffic dynamics and flow.
-          
-
+direction in comparison to the original one lane cellular automaton. They have
+incorporated inteteractions to simulate passing, as well as a distribution of
+varying vehicle speeds. Once again, Simon and gutowitz, like their reference
+model, had an emphasis on approximating the behavior of real traffic and human
+behavior. They wanted to address the issue of a one lane cellular atomaton where
+all vehicles have a maximum velocity and thus the model unrealistically follows
+a lead slow car, hence the need and emphasis on passing. The bidirectional model
+varried in types where there was varrying rules regarding passing. The
+researchers have found that passing greatly increases fluidity in traffic not
+seen in single dimensional cellular automaton and greatly resembles real world
+traffic dynamics and flow.
 
 % A high-resolution celluar automata traffic simulation model with application
 % in a freeway traffic information system
-
 Hafstein uses cellular automata to visualize and simulate real word traffic
 conditions using inputs that are detected from the North Rhine-Westphalia area
-in Germany. \cite{hafstein_high-resolution_2004} Loop detectors are inductive
+in Germany \cite{hafstein_high-resolution_2004}. Loop detectors are inductive
 electrical devices that are put into the road which can record vehicles that are
 either passing or sitting upon them. By utilizing these detectors, Hafstein and
 others were able to determine the vehicle type, such as truck or car, the
@@ -249,31 +237,10 @@ around the highway.
 \section{Methods}
 For this project, we are using Python to implement our cellular automata traffic
 flow model. We also included a simple GUI to visualize the traffic flow on each
-time step. Some of the libaries that we are using include: Matplotlib, Seaborn,
-Pillow, and Numpy
+time step. Some of the libaries that we are using include: Seaborn, Pillow, and
+Numpy.
 
 \section{Progress}
-
-% \begin{figure}
-%     \centering
-%     \includegraphics{assets/cells.png}
-%     \caption{An example of two traffic cells inside the traffic matrix.}
-%     \label{fig:cells}
-% \end{figure}
-
-% \begin{figure*}
-%     \includegraphics{assets/cmatrix.png}
-%     \caption{An example traffic grid.}
-%     \label{fig:cmatrix}
-% \end{figure*}
-
-% \begin{figure}
-%     \centering
-%     \includegraphics{assets/wmatrix.png}
-%     \caption{An example traffic grid, showing the weighted matrix.}
-%     \label{fig:wmatrix}
-% \end{figure}
-
 As of now at this middle update, we have successfully implemented the original
 algorithm. Our matrix road network is different from the original paper. Instead
 of an outside loop, with several intersections, our implementation so far is a
@@ -284,19 +251,34 @@ terminal destination where from here the cells are removed from system. We can
 expand the matrix to any size with any number of starting instances of traffic
 flows, however, so far, we have worked with a 10 x 10 matrix for simplicity. 
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\columnwidth]{assets/cmatrix.png}
+    \caption{An example traffic grid.}
+    \label{fig:cmatrix}
+\end{figure}
+
 On top of this, we have also implemented our first step in branching from the
 original paper. Here we have developed a weighting system that adds weights to
-cells.  By introducing weights to the cells, we able to coerce the traffic cells
+cells. By introducing weights to the cells, we able to coerce the traffic cells
 to take different routes other than the shortest possible path. We are able to
 see if the route of taking a lower weighted route such as a longer highway with
 a high traffic capacity would be quicker than a shorter path that allows less
 traffic flow with a smaller capacity value. Since the weight is simply the
 inverse of the capacity of the cell we can find an optimal path to the
-destination. On top of this, we have designed a simple gif to illustrate the
-traffic flows in addition to an output that shows corresponding coordinates that
-show past and future moves to allow us to better understand the direction and
-flow of these cells. This GUI heatmap allowed us to see an intentional design
-choice in the original paper that is further discussed in the results section.  
+destination (Fig. \ref{fig:wmatrix}). On top of this, we have designed a simple
+gif to illustrate the traffic flows in addition to an output that shows
+corresponding coordinates that show past and future moves to allow us to better
+understand the direction and flow of these cells. This GUI heatmap allowed us to
+see an intentional design choice in the original paper that is further discussed
+in the results section.  
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\columnwidth]{assets/wmatrix.png}
+    \caption{An example traffic grid, showing the weighted matrix.}
+    \label{fig:wmatrix}
+\end{figure}
 
 Regarding the destination priorities that was included in our initial project
 proposal as a brainstorming idea to branch from the original paper, we have
@@ -307,7 +289,7 @@ priority in addition to the issue found with cells getting stuck without a
 circular outside edge path of the matrix.  
 
 Some of the issues that we have run into is the use of technology such as
-python, visual studio code and github with several of the group members. This
+Python, IDE (VS Code) and Github with several of the group members. This
 presents a challenge as there is a disparity in some of these skills between
 members. However, despite this, our members are continuously eager to learn and
 teach one another. In addition to this, members contribute to their strengths
@@ -323,12 +305,23 @@ generated, we can see that the cells are able to move to their destination
 within the shortest path given the traffic capacity is accommodating. It is
 interesting to see how a cell can quickly reach a high density of traffic once
 multiple flows of traffic converge at that matrix coordinate. In addition to
-this, it seems that in the original paper, an outer lying circular route at the
-edge of the matrix was included to accommodate to the rules of the traffic flow.
-Without the outer route, it would be more cost effective for a cell to stay in
-its position than to backtrack into another route. By implementing a circular
-route along the edges of the matrix, the cells are able to continuously move in
-their desired direction to reach the final destination.  
+this, it seems that in the original paper \cite{pang_simulation_2019}, an outer
+lying circular route at the edge of the matrix was included to accommodate to
+the rules of the traffic flow. Without the outer route, it would be more cost
+effective for a cell to stay in its position than to backtrack into another
+route. By implementing a circular route along the edges of the matrix, the cells
+are able to continuously move in their desired direction to reach the final
+destination. This approach to the trafic simulation has its own shortcomings in
+that not every traffic environment will have this type of roadwork. By
+implementing our route pathing further discussed in the future works section, we
+are able overcome this issue with higher traffic simulation fidelity.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\columnwidth]{assets/cells.png}
+    \caption{An example of two traffic cells inside the traffic matrix.}
+    \label{fig:cells}
+\end{figure}
 
 \section{Conclusion and Future Work}
 We would like to implement a cost-effective route decision that takes accuracy
