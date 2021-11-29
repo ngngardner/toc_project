@@ -66,7 +66,7 @@ class TrafficMatrix(MatrixHelper):
             capacity = self.capacity(origins[idx])
             volume = self.rng.choice(range(1, capacity))
 
-            flow = TrafficFlow(origins[idx], dests[idx], volume)
+            flow = TrafficFlow(origins[idx], dests[idx], int(volume))
             self.flows.append(flow)
 
     def step_flows(self) -> None:

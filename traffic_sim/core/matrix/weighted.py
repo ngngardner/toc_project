@@ -47,7 +47,7 @@ class WeightedMatrix(TrafficMatrix):
             flow.step()
 
     @beartype
-    def weight(self, pos: tuple) -> int:
+    def weight(self, pos: tuple) -> float:
         """Return traffic cell weight given a position.
 
         Args:

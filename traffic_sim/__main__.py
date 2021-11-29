@@ -3,11 +3,8 @@
 import sys
 from os import path
 
-from rich import inspect
-
+from traffic_sim.analysis import TrafficExperiment
 from traffic_sim.console import console
-from traffic_sim.matrix import WeightedMatrix
-from traffic_sim.sim import TrafficSim
 
 if not __package__:
     _path = path.realpath(path.abspath(__file__))
@@ -17,20 +14,16 @@ if not __package__:
 def main():
     """Run code from CLI."""
     console.log('traffic sim')
-
-    # set traffic capacities (hardcoded)
-    tm = WeightedMatrix(10, 10)
-    tm.cmatrix[:, 2] = 2
-    tm.cmatrix[:, 8] = 2
-    tm.cmatrix[3, :] = 3
-    tm.cmatrix[:, 5] = 4
-    tm.set_weights()
-    inspect(tm)
-
-    # simulate traffic
-    sim = TrafficSim(tm)
-    sim.run(10)
-    sim.savefig('traffic_sim')
+    num_trials = 30
+    ex = TrafficExperiment(
+        experiments=100,
+        trials=num_trials,
+        rows=10,
+        cols=10,
+        epochs=10,
+    )
+    ex.run()
+    ex.analyze()
 
 
 if __name__ == '__main__':

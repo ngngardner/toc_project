@@ -79,7 +79,7 @@ class MatrixHelper(RandomGenerator):
         return in_row and in_col
 
     @beartype
-    def is_full(self, pos: tuple[int]) -> bool:
+    def is_full(self, pos: tuple[int, int]) -> bool:
         """Check a traffic cell is full(volume exceeds capacity).
 
         Args:
@@ -110,6 +110,8 @@ class MatrixHelper(RandomGenerator):
 
         # select num_cells cells randomly
         possible_idxs = range(len(idxs[0]))
+        if num_cells > len(possible_idxs):
+            num_cells = len(possible_idxs)
         chosen_idxs = self.rng.choice(possible_idxs, num_cells, replace=False)
 
         # return selected cells

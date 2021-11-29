@@ -47,6 +47,9 @@
             (pkgs.texlive.combine {
               inherit (pkgs.texlive)
                 scheme-small
+                latexmk
+                latexindent
+
                 xstring
                 iftex
                 totpages

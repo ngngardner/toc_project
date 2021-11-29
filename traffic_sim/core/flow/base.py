@@ -46,7 +46,7 @@ class FlowHelper(object):
         return loc_x, loc_y, dest_x, dest_y
 
     @beartype
-    def moves_list(self) -> tuple[tuple]:
+    def moves_list(self) -> list[tuple]:
         """
         Return a list of possible moves.
 
@@ -83,4 +83,6 @@ class FlowHelper(object):
         current location. Also, update the previous location.
         """
         self.prev = self.location
+        if not self.possible_moves:
+            return
         self.location = min(self.possible_moves, key=self.possible_moves.get)

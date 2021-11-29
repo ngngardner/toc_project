@@ -57,7 +57,7 @@ class TrafficFlow(FlowHelper):
         self.possible_moves = self.all_moves()
 
     @beartype
-    def update_move(self, move: tuple, new: int) -> None:
+    def update_move(self, move: tuple, new: float) -> None:
         """Update the move.
 
         Args:
