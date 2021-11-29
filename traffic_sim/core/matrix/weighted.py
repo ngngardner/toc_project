@@ -1,6 +1,7 @@
 """A traffic matrix that implements weighted cells."""
 
 import numpy as np
+from beartype import beartype
 
 from traffic_sim.core.matrix.traffic import TrafficMatrix
 
@@ -10,6 +11,7 @@ class WeightedMatrix(TrafficMatrix):
 
     wmatrix: np.ndarray
 
+    @beartype
     def __init__(
         self,
         rows: int,
@@ -44,6 +46,7 @@ class WeightedMatrix(TrafficMatrix):
                     flow.update_move(move, flow.cost(move) * self.weight(move))
             flow.step()
 
+    @beartype
     def weight(self, pos: tuple) -> int:
         """Return traffic cell weight given a position.
 
