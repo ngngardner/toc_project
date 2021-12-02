@@ -37,6 +37,9 @@
             # python
             (pkgs.poetry2nix.mkPoetryEnv {
               inherit python projectDir overrides;
+              editablePackageSources = {
+                package = ./.;
+              };
             })
             pkgs.python39Packages.poetry
 
@@ -44,6 +47,9 @@
             (pkgs.texlive.combine {
               inherit (pkgs.texlive)
                 scheme-small
+                latexmk
+                latexindent
+
                 xstring
                 iftex
                 totpages

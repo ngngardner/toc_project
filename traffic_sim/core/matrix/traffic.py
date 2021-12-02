@@ -1,11 +1,10 @@
 """Traffic matrix class for running simulation algorithm."""
 
-from typing import List, Optional
-
 import numpy as np
+from beartype import beartype
 
 from traffic_sim.core.distance import coord_list
-from traffic_sim.core.flow import TrafficFlow
+from traffic_sim.core.flow.flow import TrafficFlow
 from traffic_sim.core.matrix.base import MatrixHelper
 
 
@@ -17,45 +16,40 @@ class TrafficMatrix(MatrixHelper):
     cmatrix: np.ndarray
     vmatrix: np.ndarray
     density: float
-    flows: List[TrafficFlow]
+    flows: TrafficFlow
 
+    @beartype
     def __init__(
         self,
         rows: int,
         cols: int,
-        density: Optional[float] = 0.05,
-        seed: Optional[int] = None,
+        density: float = 0.05,
+        seed: int = 0,
     ):
         """Initialize a traffic simulation object.
 
         Args:
             rows (int): Number of rows in the traffic matrix.
             cols (int): Number of columns in the traffic matrix.
-            density (Optional[float]): Density of traffic flow simulation.
-            seed (Optional[int], optional): Random seed.
+            density (float): Density of traffic flow simulation.
+            seed (int): Random seed.
         """
         super().__init__(rows, cols, seed)
         self.density = density
         self.flows = []
 
-    def run(self, iterations: int) -> None:
-        """Run the traffic simulation.
-
-        Args:
-            iterations (int): Number of iterations to run.
-        """
-        for _ in range(iterations):
-            self.generate_flows()
-            self.step_flows()
-            self.update_matrix()
-            self.pop_flows()
+    def step(self) -> None:
+        """Step through the traffic simulation."""
+        self.generate_flows()
+        self.step_flows()
+        self.update_matrix()
+        self.pop_flows()
 
     def generate_flows(self) -> None:
-        """
-        Generate traffic flows based on density.
+        """Generate traffic flows based on density.
 
         Returns:
-            None
+            None when no flows are generated.
         """
         num_cells = self.rows * self.cols * self.density
         num_cells = round(num_cells) - len(self.flows)
@@ -72,7 +66,7 @@ class TrafficMatrix(MatrixHelper):
             capacity = self.capacity(origins[idx])
             volume = self.rng.choice(range(1, capacity))
 
-            flow = TrafficFlow(origins[idx], dests[idx], volume)
+            flow = TrafficFlow(origins[idx], dests[idx], int(volume))
             self.flows.append(flow)
 
     def step_flows(self) -> None:
@@ -91,7 +85,7 @@ class TrafficMatrix(MatrixHelper):
 
     def update_matrix(self) -> None:
         """Update traffic volume matrix based on current flows."""
-        self.vmatrix = np.zeros(self.vmatrix.shape, dtype=int)
+        self.clear_volume()
 
         for flow in self.flows:
             location = flow.location
