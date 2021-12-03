@@ -8,7 +8,6 @@ import pandas as pd
 import seaborn as sns
 from beartype import beartype
 from matplotlib import pyplot as plt
-from scipy.stats import ttest_ind
 
 from traffic_sim.console import console
 from traffic_sim.core.sim.history import TrafficHistory
@@ -120,13 +119,6 @@ class TrafficExperiment(object):
 
     def analyze(self) -> None:
         """Analyze the results."""
-        # run ttest
-        ttest = ttest_ind(
-            self.res_df['full_cells'].values,
-            self.res_df['full_cells_w'].values,
-        )
-        console.log('t-test: {0}'.format(ttest))
-
         # get average full cells per density
         avg_full_cells = self.res_df.groupby('density').mean()
 
