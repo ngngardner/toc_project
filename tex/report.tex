@@ -323,6 +323,35 @@ are able overcome this issue with higher traffic simulation fidelity.
     \label{fig:cells}
 \end{figure}
 
+\begin{table}
+    \centering
+    \include{assets/avg_full_cells.tex}
+    \caption{Average number of times a traffic cell reached full capacity with original method and proposed method across different traffic densities. Results were obtained after 100 trials on each density.}
+    \label{tab:full_cells}
+\end{table}
+
+\newpage
+
+\begin{equation}
+    L(i, j) = (i - x)^2 + (j - y)^2
+\end{equation}
+
+\begin{equation}
+    L(i + 1, j) = (i + 1 - x)^2 + (j - y)^2
+\end{equation}
+
+\begin{equation}
+    L(i - 1, j) = (i - 1 - x)^2 + (j - y)^2
+\end{equation}
+
+\begin{equation}
+    L(i, j + 1) = (i - x)^2 + (j + 1 - y)^2
+\end{equation}
+
+\begin{equation}
+    L(i, j - 1) = (i - x)^2 + (j - 1 - y)^2
+\end{equation}
+
 \section{Conclusion and Future Work}
 We would like to implement a cost-effective route decision that takes accuracy
 as the highest priority to prevent the likely hood of a cell staying in single
